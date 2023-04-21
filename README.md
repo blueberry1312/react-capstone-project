@@ -24,11 +24,11 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-## 📖 [Weather App] <a name="about-project"></a>
+## 📖 [Country App] <a name="about-project"></a>
 
-"Where am I?" is a web application that provides country and climatic data of all countries in the world. It is a Single Page App (SPA) building with React and Redux that allows users to:
+"Where am I?" is a web application that provides countries data of all countries in the world. It is a Single Page App (SPA) building with React and Redux that allows users to:
 - Displays a home page with all regions.
-- Displays data about the country and his weather.
+- Displays data about the country.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,8 +78,8 @@ Example command:
 Clone this repository to your desired folder:
 
 ```sh
-  git clone git@github.com:blueberry1312/react-group-project.git
-  cd react-group-project
+  git clone git@github.com:blueberry1312/react-capstone-project.git
+  cd react-capstone-project
 ```
 
 ### Install
@@ -133,7 +133,7 @@ To run tests, run the following command:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/blueberry1312/react-group-project/issues).
+Feel free to check the [issues page](https://github.com/blueberry1312/react-capstone-project/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

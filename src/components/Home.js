@@ -1,50 +1,127 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCountries, selectAllCountries } from '../redux/home/homeSlice';
+import CountryDetail from './CountryDetail';
+import './Home.css';
 
 function Home() {
   const dispatch = useDispatch();
   const countries = useSelector(selectAllCountries);
 
   const [regionFilter, setRegionFilter] = useState('');
+  const [regionCounts, setRegionCounts] = useState({
+    'All countries': countries.length,
+    Africa: 0,
+    Americas: 0,
+    Asia: 0,
+    Europe: 0,
+    Oceania: 0,
+  });
 
   useEffect(() => {
     dispatch(fetchCountries());
   }, [dispatch]);
 
-  const handleRegionFilterChange = (event) => {
-    setRegionFilter(event.target.value);
+  useEffect(() => {
+    const counts = countries.reduce((acc, country) => {
+      if (country.region in acc) {
+        acc[country.region] += 1;
+      } else {
+        acc[country.region] = 1;
+      }
+      acc['All countries'] += 1;
+      return acc;
+    }, {
+      'All countries': 0,
+      Africa: 0,
+      Americas: 0,
+      Asia: 0,
+      Europe: 0,
+      Oceania: 0,
+    });
+    setRegionCounts(counts);
+  }, [countries]);
+
+  const handleRegionFilterChange = (region) => {
+    setRegionFilter(region);
+  };
+
+  const regions = ['All countries', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+
+  const [selectedCountry, setSelectedCountry] = useState(null);
+  const [showCountryDetails, setShowCountryDetails] = useState(false);
+
+  const handleCountryClick = (country) => {
+    setSelectedCountry(country);
+    setShowCountryDetails(true);
+  };
+
+  const handleBackButtonClick = () => {
+    setSelectedCountry(null);
+    setShowCountryDetails(false);
   };
 
   const filteredCountries = countries
     .filter(
-      (country) => country.region.toLowerCase().includes(regionFilter.toLowerCase()),
+      (country) => regionFilter === 'All countries' || country.region === regionFilter,
     )
     .map((country) => (
-      <div key={country.cca3}>
+      <div
+        className="country"
+        key={country.cca3}
+        role="button"
+        tabIndex={0}
+        onClick={() => handleCountryClick(country)}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            handleCountryClick(country);
+          }
+        }}
+      >
         {country.name.common}
         {' '}
-        -
-        {country.region}
+        - Population:
+        {country.population}
       </div>
     ));
 
+  if (showCountryDetails) {
+    return (
+      <div>
+        <button type="button" onClick={handleBackButtonClick}>Back</button>
+        <CountryDetail country={selectedCountry} />
+      </div>
+    );
+  }
+
   return (
     <div>
-      <h1>List of Countries</h1>
-      <div>
-        Filter by region:
+      <div className="container">
         {' '}
-        <select value={regionFilter} onChange={handleRegionFilterChange}>
-          <option value="">All countries</option>
-          <option value="Africa">Africa</option>
-          <option value="Americas">Americas</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Oceania">Oceania</option>
-        </select>
+        {regions.map((region) => (
+          <div
+            className={`region ${region.toLowerCase().replace(' ', '-')}`}
+            key={region}
+            role="button"
+            tabIndex={0}
+            onClick={() => handleRegionFilterChange(region)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                handleRegionFilterChange(region);
+              }
+            }}
+          >
+            {region}
+            {' '}
+            (
+            {regionCounts[region]}
+            )
+          </div>
+        ))}
       </div>
-      {filteredCountries}
+      <div className="filtered-countries">
+        {filteredCountries}
+      </div>
     </div>
   );
 }
