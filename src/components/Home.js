@@ -58,7 +58,7 @@ function Home() {
   if (showCountryList) {
     return (
       <div>
-        <button type="button" onClick={handleBackButtonClick}>Back</button>
+        <button type="button" className="back-button" onClick={handleBackButtonClick}>Back</button>
         <CountryList countries={countries} regionFilter={regionFilter} />
       </div>
     );
@@ -81,11 +81,13 @@ function Home() {
               }
             }}
           >
-            {region}
-            {' '}
-            (
-            {regionCounts[region]}
-            )
+            <div className="effect">
+              {region}
+              {' '}
+              (
+              {regionCounts[region]}
+              )
+            </div>
           </div>
         ))}
       </div>

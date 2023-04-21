@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CountryDetail from './CountryDetail';
+import './CountryList.css';
 
 function CountryList({ countries, regionFilter }) {
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -26,10 +27,12 @@ function CountryList({ countries, regionFilter }) {
           }
         }}
       >
-        {country.name.common}
-        {' '}
-        - Population:
-        {country.population}
+        <div className="country-name">
+          {country.name.common}
+          {' '}
+          - Population:
+          {country.population}
+        </div>
       </div>
     ));
 
@@ -42,7 +45,7 @@ function CountryList({ countries, regionFilter }) {
   }
 
   return (
-    <div className="filtered-countries">{filteredCountries}</div>
+    <div className="country-list">{filteredCountries}</div>
   );
 }
 
