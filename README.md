@@ -57,6 +57,7 @@
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - You can see a Live Demo clicking [here](https://react-capstone-project-lmyd.onrender.com).
+- You can also check out a [video](https://www.loom.com/share/f1b1f87b1e3248a0ad1db374a858bccb).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
