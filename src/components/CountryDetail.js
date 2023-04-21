@@ -42,27 +42,38 @@ function CountryDetails({ country }) {
   );
 }
 
+CountryDetails.defaultProps = {
+  country: {},
+};
+
 CountryDetails.propTypes = {
   country: PropTypes.shape({
     name: PropTypes.shape({
       common: PropTypes.string.isRequired,
-    }).isRequired,
-    capital: PropTypes.string.isRequired,
-    population: PropTypes.number.isRequired,
-    region: PropTypes.string.isRequired,
-    subregion: PropTypes.string.isRequired,
-    languages: PropTypes.objectOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-      }),
-    ).isRequired,
+    }),
+    capital: PropTypes.arrayOf(PropTypes.string),
+    population: PropTypes.number,
+    region: PropTypes.string,
+    subregion: PropTypes.string,
+    languages: PropTypes.oneOfType([
+      PropTypes.objectOf(
+        PropTypes.string.isRequired,
+      ),
+      PropTypes.arrayOf(
+        PropTypes.objectOf(
+          PropTypes.string.isRequired,
+        ),
+      ),
+    ]),
     currencies: PropTypes.objectOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
       }),
-    ).isRequired,
-    flags: PropTypes.string.isRequired,
-  }).isRequired,
+    ),
+    flags: PropTypes.objectOf(
+      PropTypes.string.isRequired,
+    ),
+  }),
 };
 
 export default CountryDetails;

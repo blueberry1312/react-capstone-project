@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCountries, selectAllCountries } from '../redux/home/homeSlice';
-import CountryDetail from './CountryDetail';
+import CountryList from './CountryList';
 import './Home.css';
 
 function Home() {
@@ -9,6 +9,7 @@ function Home() {
   const countries = useSelector(selectAllCountries);
 
   const [regionFilter, setRegionFilter] = useState('');
+  const [showCountryList, setShowCountryList] = useState(false);
   const [regionCounts, setRegionCounts] = useState({
     'All countries': countries.length,
     Africa: 0,
@@ -44,52 +45,21 @@ function Home() {
 
   const handleRegionFilterChange = (region) => {
     setRegionFilter(region);
+    setShowCountryList(true);
+  };
+
+  const handleBackButtonClick = () => {
+    setShowCountryList(false);
+    setRegionFilter('');
   };
 
   const regions = ['All countries', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
-  const [selectedCountry, setSelectedCountry] = useState(null);
-  const [showCountryDetails, setShowCountryDetails] = useState(false);
-
-  const handleCountryClick = (country) => {
-    setSelectedCountry(country);
-    setShowCountryDetails(true);
-  };
-
-  const handleBackButtonClick = () => {
-    setSelectedCountry(null);
-    setShowCountryDetails(false);
-  };
-
-  const filteredCountries = countries
-    .filter(
-      (country) => regionFilter === 'All countries' || country.region === regionFilter,
-    )
-    .map((country) => (
-      <div
-        className="country"
-        key={country.cca3}
-        role="button"
-        tabIndex={0}
-        onClick={() => handleCountryClick(country)}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter' || event.key === ' ') {
-            handleCountryClick(country);
-          }
-        }}
-      >
-        {country.name.common}
-        {' '}
-        - Population:
-        {country.population}
-      </div>
-    ));
-
-  if (showCountryDetails) {
+  if (showCountryList) {
     return (
       <div>
         <button type="button" onClick={handleBackButtonClick}>Back</button>
-        <CountryDetail country={selectedCountry} />
+        <CountryList countries={countries} regionFilter={regionFilter} />
       </div>
     );
   }
@@ -118,9 +88,6 @@ function Home() {
             )
           </div>
         ))}
-      </div>
-      <div className="filtered-countries">
-        {filteredCountries}
       </div>
     </div>
   );

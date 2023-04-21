@@ -9,14 +9,6 @@ export const fetchCountries = createAsyncThunk(
   },
 );
 
-export const selectCountry = createSlice({
-  name: 'selectedCountry',
-  initialState: null,
-  reducers: {
-    selectCountry: (state, action) => action.payload,
-  },
-});
-
 const homeSlice = createSlice({
   name: 'home',
   initialState: {
