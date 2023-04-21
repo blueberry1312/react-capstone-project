@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Gill+Sans&display=swap');
+
+body {
+  font-family: 'Gill Sans', sans-serif;
+  color: #fff;
+  margin: 0;
+}
+
+.back-button {
+  width: 100vw;
+  color: #fff;
+  background-color: rgb(236, 76, 138);
+  border: 1px solid rgb(206, 65, 118);
+  padding: 40px;
+  font-size: 26px;
+  transition: all 0.7s ease-in-out;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  transform: scale(1.3);
+}

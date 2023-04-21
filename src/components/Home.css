@@ -1,0 +1,70 @@
+.container {
+  display: grid;
+  position: relative;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "all-countries africa"
+    "americas asia"
+    "europe oceania";
+  height: 100vh;
+  background-color: rgb(236, 76, 138);
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('./bg.png');
+  background-repeat: repeat;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.region {
+  text-align: center;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.effect {
+  padding: 10px;
+  transition: all 0.7s ease-in-out;
+}
+
+.effect:hover {
+  transform: scale(1.8);
+}
+
+.all-countries {
+  grid-area: all-countries;
+  background-color: rgb(206, 65, 118);
+}
+
+.africa {
+  grid-area: africa;
+}
+
+.americas {
+  grid-area: americas;
+}
+
+.asia {
+  grid-area: asia;
+  background-color: rgb(206, 65, 118);
+}
+
+.europe {
+  grid-area: europe;
+  background-color: rgb(206, 65, 118);
+}
+
+.oceania {
+  grid-area: oceania;
+}

@@ -1,0 +1,59 @@
+.country-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgb(236, 76, 138);
+  height: 84vh;
+}
+
+.country-details h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: rgb(65, 20, 37);
+}
+
+.country-details img {
+  max-width: 30%;
+  margin-bottom: 20px;
+  top: 65px;
+  position: relative;
+  align-self: flex-start;
+}
+
+.flag-container {
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  bottom: 50px;
+  position: relative;
+  left: 60px;
+}
+
+.country-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.country-details td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.country-details td:first-child {
+  font-weight: bold;
+  color: rgb(65, 20, 37);
+}
+
+@media (min-width: 768px) {
+  .weather-container {
+    bottom: 100px;
+  }
+}
