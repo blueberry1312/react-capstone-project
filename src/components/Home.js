@@ -66,7 +66,7 @@ function Home() {
 
   return (
     <div>
-      <div className="container">
+      <div className="container" title="home-component">
         {' '}
         {regions.map((region) => (
           <div

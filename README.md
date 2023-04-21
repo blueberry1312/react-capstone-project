@@ -47,14 +47,16 @@
 
 ### Key Features <a name="key-features"></a>
 
-- Displayed home page section with all categories.
+- Display home page section with all categories.
+- Display list of countries with his population.
+- Display data from each country.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- You can see a Live Demo clicking [here]().
+- You can see a Live Demo clicking [here](https://react-capstone-project-lmyd.onrender.com).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -122,7 +124,6 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- Style and add a details page.
 - Add test files for all components.
 
 
